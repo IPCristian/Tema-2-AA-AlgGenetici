@@ -104,7 +104,7 @@ def recomb_participants():
 
 
 def recombination(participants):
-    global new_population,population
+    global new_population
 
     if len(participants) < 2:
         if not iteration_counter:
@@ -118,17 +118,17 @@ def recombination(participants):
 
         break_point = random.randint(1,cromosome_len)
 
-        new_a = population[a][:break_point] + population[b][break_point:]
-        new_b = population[b][:break_point] + population[a][break_point:]
+        new_a = new_population[a][:break_point] + new_population[b][break_point:]
+        new_b = new_population[b][:break_point] + new_population[a][break_point:]
 
         if not iteration_counter:
             output.write("Recombination between chromosome " + str(a+1) + " and " + str(b+1) + ", Break Point: "
                          + str(break_point) + " :\n")
             output.write("Initial: ")
-            for bit in population[a]:
+            for bit in new_population[a]:
                 output.write(str(bit))
             output.write(" ")
-            for bit in population[b]:
+            for bit in new_population[b]:
                 output.write(str(bit))
             output.write("\nResult: ")
             for bit in new_a:
@@ -138,8 +138,8 @@ def recombination(participants):
                 output.write(str(bit))
             output.write("\n")
 
-        new_population[a] = new_a
-        new_population[b] = new_b
+        new_population[a] = copy.deepcopy(new_a)
+        new_population[b] = copy.deepcopy(new_b)
 
     if len(participants) == 3:
         a,b,c = random.sample(participants,3)
@@ -149,22 +149,22 @@ def recombination(participants):
 
         break_point = random.randint(1,cromosome_len)
 
-        new_a = population[a][:break_point] + population[b][break_point:]
-        new_b = population[b][:break_point] + population[c][break_point:]
-        new_c = population[c][:break_point] + population[a][break_point:]
+        new_a = new_population[a][:break_point] + new_population[b][break_point:]
+        new_b = new_population[b][:break_point] + new_population[c][break_point:]
+        new_c = new_population[c][:break_point] + new_population[a][break_point:]
 
         if not iteration_counter:
             output.write("Recombination between chromosome " + str(a + 1) + " , " + str(b + 1) + " and " + str(
                 c + 1) + ", Break Point: " + str(break_point) + " :\n")
 
             output.write("Initial: ")
-            for bit in population[a]:
+            for bit in new_population[a]:
                 output.write(str(bit))
             output.write(" ")
-            for bit in population[b]:
+            for bit in new_population[b]:
                 output.write(str(bit))
             output.write(" ")
-            for bit in population[c]:
+            for bit in new_population[c]:
                 output.write(str(bit))
 
             output.write("\nResult: ")
@@ -179,9 +179,9 @@ def recombination(participants):
 
             output.write("\n")
 
-        new_population[a] = new_a
-        new_population[b] = new_b
-        new_population[c] = new_c
+        new_population[a] = copy.deepcopy(new_a)
+        new_population[b] = copy.deepcopy(new_b)
+        new_population[c] = copy.deepcopy(new_c)
 
     else:
         a, b = random.sample(participants, 2)
@@ -190,17 +190,17 @@ def recombination(participants):
 
         break_point = random.randint(1, cromosome_len)
 
-        new_a = population[a][:break_point] + population[b][break_point:]
-        new_b = population[b][:break_point] + population[a][break_point:]
+        new_a = new_population[a][:break_point] + new_population[b][break_point:]
+        new_b = new_population[b][:break_point] + new_population[a][break_point:]
 
         if not iteration_counter:
             output.write("Recombination between chromosome " + str(a + 1) + " and " + str(b + 1) + ", Break Point: "
                          + str(break_point) + " :\n")
             output.write("Initial: ")
-            for bit in population[a]:
+            for bit in new_population[a]:
                 output.write(str(bit))
             output.write(" ")
-            for bit in population[b]:
+            for bit in new_population[b]:
                 output.write(str(bit))
             output.write("\nResult: ")
             for bit in new_a:
@@ -210,8 +210,8 @@ def recombination(participants):
                 output.write(str(bit))
             output.write("\n")
 
-        new_population[a] = new_a
-        new_population[b] = new_b
+        new_population[a] = copy.deepcopy(new_a)
+        new_population[b] = copy.deepcopy(new_b)
 
     if not iteration_counter:
         output.write("\nAfter recombination:\n\n")
